@@ -22,8 +22,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  double _headerHeight = 250;
-  Key _formKey = GlobalKey<FormState>();
+  final double _headerHeight = 250;
+  final Key _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.deepPurple,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -42,21 +42,21 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SafeArea(
               child: Container(
-                  padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                  margin: EdgeInsets.fromLTRB(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  margin: const EdgeInsets.fromLTRB(
                       20, 10, 20, 10), // This will be the login form
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         'Master Revenda',
                         style: TextStyle(
-                            fontSize: 60, fontWeight: FontWeight.bold),
+                            fontSize: 50, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
-                      Text(
-                        'Faça login',
-                        style: TextStyle(color: Colors.grey),
+                      const Text(
+                        'Bem vindo! Para continuar faça o login',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
-                      SizedBox(height: 30.0),
+                      const SizedBox(height: 30.0),
                       Form(
                           key: _formKey,
                           child: Column(
@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                                 decoration:
                                     ThemeHelper().inputBoxDecorationShaddow(),
                               ),
-                              SizedBox(height: 30.0),
+                              const SizedBox(height: 30.0),
                               Container(
                                 child: TextField(
                                   controller: passwordController,
@@ -81,9 +81,9 @@ class _LoginPageState extends State<LoginPage> {
                                 decoration:
                                     ThemeHelper().inputBoxDecorationShaddow(),
                               ),
-                              SizedBox(height: 15.0),
+                              const SizedBox(height: 15.0),
                               Container(
-                                margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
+                                margin: const EdgeInsets.fromLTRB(10, 0, 10, 20),
                                 alignment: Alignment.topRight,
                                 child: GestureDetector(
                                   onTap: () {
@@ -91,13 +91,13 @@ class _LoginPageState extends State<LoginPage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              ForgotPasswordPage()),
+                                              const ForgotPasswordPage()),
                                     );
                                   },
-                                  child: Text(
+                                  child: const Text(
                                     "Esqueceu a senha?",
                                     style: TextStyle(
-                                      color: Colors.grey,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
@@ -109,10 +109,10 @@ class _LoginPageState extends State<LoginPage> {
                                   style: ThemeHelper().buttonStyle(),
                                   child: Padding(
                                     padding:
-                                        EdgeInsets.fromLTRB(40, 10, 40, 10),
+                                        const EdgeInsets.fromLTRB(40, 10, 40, 10),
                                     child: Text(
                                       'Logar'.toUpperCase(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white),
@@ -152,10 +152,10 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                                margin: const EdgeInsets.fromLTRB(10, 20, 10, 20),
                                 //child: Text('Don\'t have an account? Create'),
                                 child: Text.rich(TextSpan(children: [
-                                  TextSpan(text: "Não possui uma conta? "),
+                                  const TextSpan(text: "Não possui uma conta? "),
                                   TextSpan(
                                     text: 'Criar',
                                     recognizer: TapGestureRecognizer()
@@ -164,11 +164,11 @@ class _LoginPageState extends State<LoginPage> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    RegistrationPage()));
+                                                    const RegistrationPage()));
                                       },
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).accentColor),
+                                        color: Colors.blue),
                                   ),
                                 ])),
                               ),

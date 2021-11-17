@@ -8,10 +8,13 @@ import 'package:master_revenda/Login/common/theme_helper.dart';
 import 'package:master_revenda/Login/pages/login_page_cliente.dart';
 import 'package:master_revenda/Login/pages/registration_revenda_page.dart';
 import 'package:master_revenda/Login/pages/widgets/header_widget.dart';
+import 'package:validadores/validadores.dart';
 
 import 'profile_page.dart';
 
 class RegistrationPage extends StatefulWidget {
+  const RegistrationPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _RegistrationPageState();
@@ -31,17 +34,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.deepPurple,
       body: SingleChildScrollView(
         child: Stack(
           children: [
             Container(
               height: 150,
-              child: HeaderWidget(150, false, Icons.person_add_alt_1_rounded),
+              child: const HeaderWidget(150, false, Icons.person_add_alt_1_rounded),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              margin: const EdgeInsets.fromLTRB(25, 50, 25, 10),
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               alignment: Alignment.center,
               child: Column(
                 children: [
@@ -53,17 +56,17 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: Stack(
                             children: [
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
                                   border:
                                       Border.all(width: 5, color: Colors.white),
                                   color: Colors.white,
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Colors.black12,
                                       blurRadius: 20,
-                                      offset: const Offset(5, 5),
+                                      offset: Offset(5, 5),
                                     ),
                                   ],
                                 ),
@@ -74,7 +77,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.fromLTRB(80, 80, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(80, 80, 0, 0),
                                 child: Icon(
                                   Icons.add_circle,
                                   color: Colors.grey.shade700,
@@ -84,7 +87,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Container(
@@ -101,7 +104,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: emailController,
@@ -119,7 +122,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: passwordController,
@@ -138,22 +141,29 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: cpfController,
                             decoration: ThemeHelper()
                                 .textInputDecoration("CPF*", "digite seu cpf"),
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "digite seu cpf";
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                // Aqui entram as validações
+                                return Validador()
+                                    .add(Validar.CPF, msg: 'CPF Inválido')
+                                    .add(Validar.OBRIGATORIO,
+                                    msg: 'Campo obrigatório')
+                                    .minLength(11)
+                                    .maxLength(11)
+                                    .valido(value, clearNoNumber: true);
                               }
                               return null;
                             },
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 15.0),
+                        const SizedBox(height: 15.0),
                         FormField<bool>(
                           builder: (state) {
                             return Column(
@@ -168,9 +178,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                             state.didChange(value);
                                           });
                                         }),
-                                    Text(
+                                    const Text(
                                       "Criar conta como revendedor.",
-                                      style: TextStyle(color: Colors.grey),
+                                      style: TextStyle(color: Colors.white),
                                     ),
                                   ],
                                 ),
@@ -189,7 +199,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             );
                           },
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           decoration:
                               ThemeHelper().buttonBoxDecoration(context),
@@ -200,7 +210,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
                                 "Cadastrar".toUpperCase(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -236,7 +246,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => LoginPage()));
+                                          builder: (context) => const LoginPage()));
                                 }
                               }
                             },
