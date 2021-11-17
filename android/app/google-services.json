@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1078049195657",
+    "project_id": "masterrevenda-47e82",
+    "storage_bucket": "masterrevenda-47e82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078049195657:android:1cd9096a06a681da592858",
+        "android_client_info": {
+          "package_name": "com.example.master_revenda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1078049195657-uod6sn5c3ne4ahaid30bvjp8bbjl9pem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANr_NN5d0bfandUICc_CEGD0TwLo5LzG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1078049195657-uod6sn5c3ne4ahaid30bvjp8bbjl9pem.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
