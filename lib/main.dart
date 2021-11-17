@@ -7,13 +7,15 @@ import 'package:master_revenda/Revendas/form.dart';
 import 'package:master_revenda/Revendas/lista.dart';
 
 void main() async {
-  runApp(MyApp());
+  runApp(const MyApp());
   await Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
   static const HOME = '/';
   static const REVENDA_FORM = 'revenda-form';
+
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        HOME: (context) => LoginPage(),
+        HOME: (context) => const LoginPage(),
       },
     );
   }

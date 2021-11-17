@@ -218,9 +218,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                             ),
                             onPressed: () async {
-                              print('Antes');
                               if (_formKey.currentState!.validate()) {
-                                print('Cadastrar');
                                 await FirebaseAuth.instance
                                     .createUserWithEmailAndPassword(
                                         email: emailController.text,
