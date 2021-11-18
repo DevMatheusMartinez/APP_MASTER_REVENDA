@@ -53,6 +53,8 @@ class _EditarVeiculo extends State<EditarVeiculo> {
         TextEditingController(text: widget.veiculo['portas']);
     final cambioController =
         TextEditingController(text: widget.veiculo['cambio']);
+    final precoController =
+        TextEditingController(text: widget.veiculo['preco']);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -362,6 +364,21 @@ class _EditarVeiculo extends State<EditarVeiculo> {
                         ),
                         SizedBox(height: 20.0),
                         Container(
+                          child: TextFormField(
+                            controller: descricaoController,
+                            decoration: ThemeHelper().textInputDecoration(
+                                "Descrição*", "Digite a descrição do veiculo"),
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return "Digite a descrição do veiculo";
+                              }
+                              return null;
+                            },
+                          ),
+                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                        ),
+                        SizedBox(height: 20.0),
+                        Container(
                           decoration:
                               ThemeHelper().buttonBoxDecoration(context),
                           child: ElevatedButton(
@@ -403,6 +420,7 @@ class _EditarVeiculo extends State<EditarVeiculo> {
                                 "sobre": descricaoController.text,
                                 "portas": portasController.text,
                                 "cambio": cambioController.text,
+                                "preco": precoController.text,
                                 "userUid":
                                     FirebaseAuth.instance.currentUser!.uid
                               });
@@ -423,6 +441,7 @@ class _EditarVeiculo extends State<EditarVeiculo> {
                               descricaoController.clear();
                               portasController.clear();
                               cambioController.clear();
+                              precoController.clear();
 
                               Navigator.pushReplacement(
                                   context,

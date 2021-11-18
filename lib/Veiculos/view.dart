@@ -1,13 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:master_revenda/Clientes/criarContratoCliente.dart';
 import 'package:master_revenda/Revendas/formMensagem.dart';
 import 'package:master_revenda/Veiculos/specific_card.dart';
 import 'package:master_revenda/Veiculos/utils.dart';
 
 class CarDetail extends StatelessWidget {
   final QueryDocumentSnapshot<Object?> veiculo;
+  final String uidRevenda;
 
-  const CarDetail({Key? key, required this.veiculo}) : super(key: key);
+  const CarDetail({Key? key, required this.veiculo, required this.uidRevenda})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +45,9 @@ class CarDetail extends StatelessWidget {
                 name2: veiculo['fabricante'],
               ),
               SpecificsCard(
-                name: 'Ano',
+                name: 'Licenciamento',
                 price: 0,
-                name2: veiculo['ano'],
+                name2: veiculo['crlv'],
               )
             ],
           ),
@@ -58,7 +61,7 @@ class CarDetail extends StatelessWidget {
                 price: 0,
               ),
               SpecificsCard(name: 'KM', name2: veiculo['km'], price: 0),
-              SpecificsCard(name: "portas", name2: "", price: veiculo['portas'])
+              SpecificsCard(name: "portas", name2: veiculo['portas'], price: 0)
             ],
           ),
           SizedBox(height: 10),
@@ -71,30 +74,22 @@ class CarDetail extends StatelessWidget {
           Text(veiculo['sobre']),
           SizedBox(height: 20),
           TextButton(
-            child: Text('Conversar com o vendedor'),
+            child: Text('comprar veiculo'),
             style: TextButton.styleFrom(
               primary: Colors.white,
               backgroundColor: Colors.teal,
               onSurface: Colors.grey,
             ),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FormMensagem()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CriarContrato(
+                            uidRevenda: uidRevenda,
+                            veiculo: veiculo,
+                          )));
             },
           ),
-          SizedBox(height: 20),
-          TextButton(
-            child: Text('Agendar videochamada'),
-            style: TextButton.styleFrom(
-              primary: Colors.white,
-              backgroundColor: Colors.teal,
-              onSurface: Colors.grey,
-            ),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FormMensagem()));
-            },
-          )
         ],
       ),
     );

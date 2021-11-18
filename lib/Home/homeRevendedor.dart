@@ -6,6 +6,7 @@ import 'package:master_revenda/Login/pages/button/buttontapped.dart';
 import 'package:master_revenda/Revendas/listConfiguracao.dart';
 import 'package:master_revenda/Revendas/form.dart';
 import 'package:master_revenda/Revendas/lista.dart';
+import 'package:master_revenda/Revendas/listaContratosCliente.dart';
 import 'package:master_revenda/Revendas/veiculosRevenda.dart';
 import 'package:master_revenda/Veiculos/cadastrarVeiculo.dart';
 
@@ -125,7 +126,7 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30))),
                   child: DefaultTabController(
-                      length: 3,
+                      length: 4,
                       child: Column(
                         children: <Widget>[
                           TabBar(
@@ -146,6 +147,9 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
                               ),
                               Tab(
                                 child: Text("Configurações da Revenda"),
+                              ),
+                              Tab(
+                                child: Text("Contratos pendentes"),
                               ),
                             ],
                           ),
@@ -182,6 +186,7 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
                                 VeiculoListRevenda(),
                                 CadastrarVeiculo(),
                                 ListConfiguracao(),
+                                ListaContratoCliente()
                               ],
                             ),
                           ),

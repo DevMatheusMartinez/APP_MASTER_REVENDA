@@ -1,27 +1,31 @@
+import 'dart:developer';
 import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:master_revenda/Clientes/ContratoView.dart';
+import 'package:master_revenda/Home/homeVehicles.dart';
 import 'package:master_revenda/Revendas/Revenda.dart';
 import 'package:master_revenda/Revendas/form.dart';
 import 'package:master_revenda/Revendas/lista.dart';
 
 import 'package:flutter/material.dart';
-import 'package:master_revenda/Veiculos/view.dart';
 import 'package:master_revenda/main.dart';
+import 'package:flutter/foundation.dart';
 
-class VeiculoList extends StatelessWidget {
-  final QueryDocumentSnapshot<Object?> revenda;
+class ListaContratoCliente extends StatefulWidget {
+  @override
+  _ListaContratoCliente createState() => _ListaContratoCliente();
+}
 
-  const VeiculoList({Key? key, required this.revenda}) : super(key: key);
+class _ListaContratoCliente extends State<ListaContratoCliente> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
             body: StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection("veiculos")
-                    .where('userUid', isEqualTo: revenda['uidAdmin'])
+                    .collection("cliente_contrato")
                     .snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -36,21 +40,14 @@ class VeiculoList extends StatelessWidget {
                           color: Colors.white,
                           child: ListTile(
                               leading: Image.asset("assets/carro_header.jpeg"),
-                              title: Text(documents['fabricante'] +
-                                  " " +
-                                  documents['modelo']),
-                              subtitle: Text(documents['combustivel'] +
-                                  " " +
-                                  documents['portas'].toString() +
-                                  " portas " +
-                                  documents['cambio']),
+                              title: Text(documents['nome_completo']),
                               onTap: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => CarDetail(
-                                            veiculo: documents,
-                                            uidRevenda: revenda['uidAdmin'])));
+                                        builder: (context) => ContratoView(
+                                              contrato: documents,
+                                            )));
                               }));
                     }).toList(),
                   );

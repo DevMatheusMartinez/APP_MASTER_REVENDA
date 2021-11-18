@@ -8,32 +8,33 @@ import 'package:master_revenda/Login/common/theme_helper.dart';
 import 'package:master_revenda/Login/pages/login_page_cliente.dart';
 import 'package:master_revenda/Login/pages/widgets/header_widget.dart';
 
-class CadastrarVeiculo extends StatefulWidget {
+class CriarContrato extends StatefulWidget {
+  final QueryDocumentSnapshot<Object?> veiculo;
+  final String uidRevenda;
+
+  const CriarContrato(
+      {Key? key, required this.uidRevenda, required this.veiculo})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return _CadastrarVeiculo();
+    return _CriarContrato();
   }
 }
 
-class _CadastrarVeiculo extends State<CadastrarVeiculo> {
+class _CriarContrato extends State<CriarContrato> {
   final _formKey = GlobalKey<FormState>();
-  final placaController = TextEditingController();
-  final renavamController = TextEditingController();
-  final tipoController = TextEditingController();
-  final combustivelController = TextEditingController();
-  final fabricanteController = TextEditingController();
-  final crlvController = TextEditingController();
-  final modeloController = TextEditingController();
-  final kmController = TextEditingController();
-  final proprietarioController = TextEditingController();
-  final proprietarioCpfCnpjController = TextEditingController();
-  final corController = TextEditingController();
-  final chassiController = TextEditingController();
-  final motorController = TextEditingController();
-  final descricaoController = TextEditingController();
-  final portasController = TextEditingController();
-  final cambioController = TextEditingController();
-  final precoController = TextEditingController();
+  final nomeController = TextEditingController();
+  final dataNascimentoController = TextEditingController();
+  final cpfCnpjController = TextEditingController();
+  final rgController = TextEditingController();
+  final rgOrgController = TextEditingController();
+  final rgUfController = TextEditingController();
+  final rgDateController = TextEditingController();
+  final nacionalidadeController = TextEditingController();
+  final naturalidadeController = TextEditingController();
+  final naturalidadeUfController = TextEditingController();
+  final emailController = TextEditingController();
+  final estadoCivilController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -96,61 +97,64 @@ class _CadastrarVeiculo extends State<CadastrarVeiculo> {
                         ),
                         Container(
                           child: TextFormField(
-                            controller: placaController,
+                            controller: nomeController,
+                            decoration: ThemeHelper().textInputDecoration(
+                                "Nome completo*", "Digite o nome completo"),
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return "Digite o nome completo";
+                              }
+                              return null;
+                            },
+                          ),
+                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          child: TextFormField(
+                            controller: dataNascimentoController,
+                            decoration: ThemeHelper().textInputDecoration(
+                                "Data de nascimento*",
+                                "Digite a data de nascimento"),
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return "Digite a data de nascimento";
+                              }
+                              return null;
+                            },
+                          ),
+                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          child: TextFormField(
+                            controller: cpfCnpjController,
+                            decoration: ThemeHelper().textInputDecoration(
+                                "CPF_CNPJ*", "Digite o cpf/cnpj"),
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return "Digite o cpf/cnpj";
+                              }
+                              return null;
+                            },
+                          ),
+                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          child: TextFormField(
+                            controller: rgController,
                             decoration: ThemeHelper()
-                                .textInputDecoration("Placa*", "Placa"),
+                                .textInputDecoration("RG*", "Digite o RG"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Digite a placa do veiculo";
-                              }
-                              return null;
-                            },
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          child: TextFormField(
-                            controller: renavamController,
-                            decoration: ThemeHelper().textInputDecoration(
-                                "Renavam*", "Digite o renavam do veiculo"),
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Digite o renavam";
-                              }
-                              return null;
-                            },
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          child: TextFormField(
-                            controller: tipoController,
-                            decoration: ThemeHelper().textInputDecoration(
-                                "Tipo*", "Digite o tipo de veiculo"),
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Digite o tipo de veiculo";
-                              }
-                              return null;
-                            },
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        Container(
-                          child: TextFormField(
-                            controller: combustivelController,
-                            decoration: ThemeHelper().textInputDecoration(
-                                "Combustivel*",
-                                "Digite o combustivel de veiculo"),
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Digite o combustivel do veiculo";
+                                return "Digite o RG";
                               }
                               return null;
                             },
@@ -160,13 +164,12 @@ class _CadastrarVeiculo extends State<CadastrarVeiculo> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
-                            controller: fabricanteController,
+                            controller: rgOrgController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "Fabricante*",
-                                "Digite o fabricante do veiculo"),
+                                "RG ORG*", "Digite o RG ORG"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Digite o fabricante do veiculo";
+                                return "Digite o RG ORG";
                               }
                               return null;
                             },
@@ -176,12 +179,12 @@ class _CadastrarVeiculo extends State<CadastrarVeiculo> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
-                            controller: crlvController,
+                            controller: rgUfController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "CRLV*", "Digite o CRLV do veiculo"),
+                                "RG Estado*", "Digite o estado do RG"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Digite o CRLV do veiculo";
+                                return "Digite o estado RG";
                               }
                               return null;
                             },
@@ -191,12 +194,12 @@ class _CadastrarVeiculo extends State<CadastrarVeiculo> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
-                            controller: modeloController,
+                            controller: rgDateController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "Modelo*", "Digite o modelo do veiculo"),
+                                "RG Data*", "Digite a data do RG"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Digite o modelo do veiculo";
+                                return "Digite a data do RG";
                               }
                               return null;
                             },
@@ -206,12 +209,12 @@ class _CadastrarVeiculo extends State<CadastrarVeiculo> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
-                            controller: kmController,
+                            controller: emailController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "KM*", "Digite o km do veiculo"),
+                                "Data do email*", "Digite o email"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Digite o km do veiculo";
+                                return "Digite o email";
                               }
                               return null;
                             },
@@ -221,12 +224,12 @@ class _CadastrarVeiculo extends State<CadastrarVeiculo> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
-                            controller: corController,
+                            controller: nacionalidadeController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "cor*", "Digite a cor do veiculo"),
+                                "Nacionalidade*", "Digite a nacionalidade"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Digite a cor do veiculo";
+                                return "Digite a nacionalidade";
                               }
                               return null;
                             },
@@ -236,13 +239,12 @@ class _CadastrarVeiculo extends State<CadastrarVeiculo> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
-                            controller: proprietarioController,
+                            controller: naturalidadeController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "proprietario*",
-                                "Digite o proprietario do veiculo"),
+                                "Naturalidade*", "Digite a naturalidade"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Digite o proprietário do veiculo";
+                                return "Digite a naturalidade";
                               }
                               return null;
                             },
@@ -252,13 +254,13 @@ class _CadastrarVeiculo extends State<CadastrarVeiculo> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
-                            controller: proprietarioCpfCnpjController,
+                            controller: naturalidadeUfController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "cpf/cnpj proprietario*",
-                                "Digite o cpf/cnpj do proprietario do veiculo"),
+                                "Naturalidade estado*",
+                                "Digite o estado da naturalidade"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Digite o cpf/cnpj do proprietário do veiculo";
+                                return "Digite o estado da naturalidade";
                               }
                               return null;
                             },
@@ -268,88 +270,12 @@ class _CadastrarVeiculo extends State<CadastrarVeiculo> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
-                            controller: chassiController,
+                            controller: estadoCivilController,
                             decoration: ThemeHelper().textInputDecoration(
-                                "chassi*", "Digite o chassi do veiculo"),
+                                "Estado Civil*", "Digite o estado civil"),
                             validator: (val) {
                               if (val!.isEmpty) {
-                                return "Digite o chassi do veiculo";
-                              }
-                              return null;
-                            },
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        SizedBox(height: 20.0),
-                        Container(
-                          child: TextFormField(
-                            controller: motorController,
-                            decoration: ThemeHelper().textInputDecoration(
-                                "Motor*", "Digite o motor do veiculo"),
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Digite o motor do veiculo";
-                              }
-                              return null;
-                            },
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        SizedBox(height: 20.0),
-                        Container(
-                          child: TextFormField(
-                            controller: portasController,
-                            decoration: ThemeHelper().textInputDecoration(
-                                "Portas*",
-                                "Digite a quantidade de portas do veiculo"),
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Digite a quantidade de portas do veiculo";
-                              }
-                              return null;
-                            },
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        SizedBox(height: 20.0),
-                        Container(
-                          child: TextFormField(
-                            controller: cambioController,
-                            decoration: ThemeHelper().textInputDecoration(
-                                "Cambio*", "Digite o cambio veiculo"),
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Digite o cambio do veiculo";
-                              }
-                              return null;
-                            },
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        SizedBox(height: 20.0),
-                        Container(
-                          child: TextFormField(
-                            controller: descricaoController,
-                            decoration: ThemeHelper().textInputDecoration(
-                                "Descrição*", "Digite a descrição do veiculo"),
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Digite a descrição do veiculo";
-                              }
-                              return null;
-                            },
-                          ),
-                          decoration: ThemeHelper().inputBoxDecorationShaddow(),
-                        ),
-                        SizedBox(height: 20.0),
-                        Container(
-                          child: TextFormField(
-                            controller: precoController,
-                            decoration: ThemeHelper().textInputDecoration(
-                                "Preço*", "Digite o preço"),
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return "Digite o preço";
+                                return "Digite o estado civil";
                               }
                               return null;
                             },
@@ -366,7 +292,8 @@ class _CadastrarVeiculo extends State<CadastrarVeiculo> {
                               padding:
                                   const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
-                                "Cadastrar".toUpperCase(),
+                                "Enviar informações para contrato"
+                                    .toUpperCase(),
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -381,48 +308,43 @@ class _CadastrarVeiculo extends State<CadastrarVeiculo> {
                                   await FirebaseAuth.instance.currentUser?.uid;
 
                               await FirebaseFirestore.instance
-                                  .collection('veiculos')
+                                  .collection('cliente_contrato')
                                   .doc()
                                   .set({
-                                "placa": placaController.text,
-                                "renavam": renavamController.text,
-                                "tipo": tipoController.text,
-                                "combustivel": combustivelController.text,
-                                "fabricante": fabricanteController.text,
-                                "crlv": crlvController.text,
-                                "modelo": modeloController.text,
-                                "km": kmController.text,
-                                "proprietario": proprietarioController.text,
+                                "nome_completo": nomeController.text,
+                                "data_nascimento":
+                                    dataNascimentoController.text,
+                                "cpf_cnpj": cpfCnpjController.text,
+                                "rg": rgController.text,
+                                "rg_org": rgOrgController.text,
+                                "rg_estado": rgUfController.text,
+                                "rg_data": rgDateController.text,
+                                "email": emailController.text,
+                                "nacionalidade": nacionalidadeController.text,
+                                "naturalidade": naturalidadeController.text,
+                                "naturalidadeUf": naturalidadeUfController.text,
+                                "estado_civil": estadoCivilController.text,
+                                "revendaUid": widget.uidRevenda,
+                                "cambio": widget.veiculo['cambio'],
+                                "chassi": widget.veiculo['chassi'],
+                                "combustivel": widget.veiculo['combustivel'],
+                                "cor": widget.veiculo['cor'],
+                                "crlv": widget.veiculo["crlv"],
+                                "fabricante": widget.veiculo["fabricante"],
+                                "km": widget.veiculo["km"],
+                                "modelo": widget.veiculo["modelo"],
+                                "motor": widget.veiculo["motor"],
+                                "placa": widget.veiculo["placa"],
+                                "portas": widget.veiculo["portas"],
+                                "proprietario": widget.veiculo["proprietario"],
                                 "proprietario_doc":
-                                    proprietarioCpfCnpjController.text,
-                                "cor": corController.text,
-                                "chassi": chassiController.text,
-                                "motor": motorController.text,
-                                "sobre": descricaoController.text,
-                                "portas": portasController.text,
-                                "cambio": cambioController.text,
-                                "preco": precoController.text,
-                                "userUid":
-                                    FirebaseAuth.instance.currentUser!.uid
+                                    widget.veiculo["proprietario_doc"],
+                                "renavam": widget.veiculo["renavam"],
+                                "sobre": widget.veiculo["sobre"],
+                                "tipo": widget.veiculo["tipo"],
                               });
 
-                              placaController.clear();
-                              renavamController.clear();
-                              tipoController.clear();
-                              combustivelController.clear();
-                              fabricanteController.clear();
-                              crlvController.clear();
-                              modeloController.clear();
-                              kmController.clear();
-                              proprietarioController.clear();
-                              proprietarioCpfCnpjController.clear();
-                              corController.clear();
-                              chassiController.clear();
-                              motorController.clear();
-                              descricaoController.clear();
-                              portasController.clear();
-                              cambioController.clear();
-                              precoController.clear();
+                              Navigator.pop(context);
                             },
                           ),
                         ),
