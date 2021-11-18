@@ -46,6 +46,7 @@ class VeiculoList extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => CarDetail(
+                                              uidRevenda: revenda.id,
                                               veiculo: documents,
                                             )));
                               }));

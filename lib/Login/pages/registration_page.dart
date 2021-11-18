@@ -40,7 +40,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
           children: [
             Container(
               height: 150,
-              child: const HeaderWidget(150, false, Icons.person_add_alt_1_rounded),
+              child: const HeaderWidget(
+                  150, false, Icons.person_add_alt_1_rounded),
             ),
             Container(
               margin: const EdgeInsets.fromLTRB(25, 50, 25, 10),
@@ -77,7 +78,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                               ),
                               Container(
-                                padding: const EdgeInsets.fromLTRB(80, 80, 0, 0),
+                                padding:
+                                    const EdgeInsets.fromLTRB(80, 80, 0, 0),
                                 child: Icon(
                                   Icons.add_circle,
                                   color: Colors.grey.shade700,
@@ -153,7 +155,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 return Validador()
                                     .add(Validar.CPF, msg: 'CPF Inválido')
                                     .add(Validar.OBRIGATORIO,
-                                    msg: 'Campo obrigatório')
+                                        msg: 'Campo obrigatório')
                                     .minLength(11)
                                     .maxLength(11)
                                     .valido(value, clearNoNumber: true);
@@ -244,7 +246,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => const LoginPage()));
+                                          builder: (context) =>
+                                              const LoginPage()));
                                 }
                               }
                             },

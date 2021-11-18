@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +9,10 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:master_revenda/Login/common/theme_helper.dart';
 import 'package:master_revenda/Login/pages/login_page_cliente.dart';
 import 'package:master_revenda/Login/pages/widgets/header_widget.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:pdf/pdf.dart';
+import 'package:flutter/foundation.dart';
+import 'package:printing/printing.dart';
 
 class CriarContrato extends StatefulWidget {
   @override
@@ -135,7 +141,130 @@ class _CriarContrato extends State<CriarContrato> {
                                 ),
                               ),
                             ),
-                            onPressed: () async {},
+                            onPressed: () async {
+                              _titleText(String text) {
+                                return pw.Padding(
+                                    padding: pw.EdgeInsets.only(top: 8),
+                                    child: pw.Text(text,
+                                        style: pw.TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: pw.FontWeight.bold)));
+                              }
+
+                              pw.Widget _buildHeader(pw.Context context) {
+                                return pw.Container(
+                                    color: PdfColors.blue,
+                                    height: 150,
+                                    child: pw.Padding(
+                                        padding: pw.EdgeInsets.all(16),
+                                        child: pw.Row(
+                                            crossAxisAlignment:
+                                                pw.CrossAxisAlignment.center,
+                                            mainAxisAlignment: pw
+                                                .MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              pw.Column(
+                                                  mainAxisAlignment: pw
+                                                      .MainAxisAlignment.center,
+                                                  crossAxisAlignment: pw
+                                                      .CrossAxisAlignment
+                                                      .center,
+                                                  children: [
+                                                    pw.Padding(
+                                                        padding:
+                                                            pw.EdgeInsets.all(
+                                                                8),
+                                                        child: pw.PdfLogo()),
+                                                    pw.Text('Fatura',
+                                                        style: pw.TextStyle(
+                                                            fontSize: 22,
+                                                            color: PdfColors
+                                                                .white))
+                                                  ]),
+                                              pw.Column(
+                                                mainAxisAlignment:
+                                                    pw.MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    pw.CrossAxisAlignment.end,
+                                                children: [
+                                                  pw.Text('Restaurante do Vale',
+                                                      style: pw.TextStyle(
+                                                          fontSize: 22,
+                                                          color:
+                                                              PdfColors.white)),
+                                                  pw.Text(
+                                                      'Rua dos Expedicionários',
+                                                      style: pw.TextStyle(
+                                                          color:
+                                                              PdfColors.white)),
+                                                  pw.Text('Curitiba',
+                                                      style: pw.TextStyle(
+                                                          color:
+                                                              PdfColors.white)),
+                                                ],
+                                              )
+                                            ])));
+                              }
+
+                              pw.Widget _buildContentClient() {
+                                return pw.Row(
+                                    mainAxisAlignment:
+                                        pw.MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      pw.Column(
+                                        crossAxisAlignment:
+                                            pw.CrossAxisAlignment.start,
+                                        children: [
+                                          _titleText('Cliente'),
+                                          pw.Text("teste"),
+                                          _titleText('Endereço'),
+                                          pw.Text("teste")
+                                        ],
+                                      ),
+                                      pw.Column(
+                                          crossAxisAlignment:
+                                              pw.CrossAxisAlignment.end,
+                                          children: [
+                                            _titleText('Número da fatura'),
+                                            pw.Text("teste"),
+                                            _titleText('Data'),
+                                            pw.Text("teste"),
+                                          ])
+                                    ]);
+                              }
+
+                              List<pw.Widget> _buildContent(
+                                  pw.Context context) {
+                                return [
+                                  pw.Padding(
+                                      padding: pw.EdgeInsets.only(
+                                          top: 30, left: 25, right: 25),
+                                      child: _buildContentClient())
+                                ];
+                              }
+
+                              final pw.Document doc = pw.Document();
+                              doc.addPage(pw.MultiPage(
+                                pageTheme:
+                                    pw.PageTheme(margin: pw.EdgeInsets.zero),
+                                header: _buildHeader,
+                                build: (context) => _buildContent(context),
+                              ));
+
+                              await Printing.layoutPdf(
+                                  onLayout: (PdfPageFormat formart) async =>
+                                      doc.save());
+
+                              // Navigator.of(context).push(MaterialPageRoute(
+                              //     builder: (_) => ViewPdf(
+                              //           path,
+                              //         )));
+
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => PDFScreen(path)));
+                            },
                           ),
                         ),
                       ],
