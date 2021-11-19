@@ -13,6 +13,8 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/pdf.dart';
 import 'package:flutter/foundation.dart';
 import 'package:printing/printing.dart';
+import 'package:master_revenda/Home/homeRevendedor.dart';
+
 
 class CriarContrato extends StatefulWidget {
   @override
@@ -117,7 +119,7 @@ class _CriarContrato extends State<CriarContrato> {
                         SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
-                            controller: observacoesController,
+                            controller: termosController,
                             decoration: ThemeHelper().textInputDecoration(
                                 "Termos", "digite os termos da venda"),
                           ),
@@ -175,7 +177,7 @@ class _CriarContrato extends State<CriarContrato> {
                                                             pw.EdgeInsets.all(
                                                                 8),
                                                         child: pw.PdfLogo()),
-                                                    pw.Text('Fatura',
+                                                    pw.Text('Contrato de venda',
                                                         style: pw.TextStyle(
                                                             fontSize: 22,
                                                             color: PdfColors
@@ -187,17 +189,17 @@ class _CriarContrato extends State<CriarContrato> {
                                                 crossAxisAlignment:
                                                     pw.CrossAxisAlignment.end,
                                                 children: [
-                                                  pw.Text('Restaurante do Vale',
+                                                  pw.Text(widget.contrato['nome_completo']  ,
                                                       style: pw.TextStyle(
                                                           fontSize: 22,
                                                           color:
                                                               PdfColors.white)),
                                                   pw.Text(
-                                                      'Rua dos Expedicionários',
+                                                      widget.contrato['cpf_cnpj'],
                                                       style: pw.TextStyle(
                                                           color:
                                                               PdfColors.white)),
-                                                  pw.Text('Curitiba',
+                                                  pw.Text(widget.contrato['rg'],
                                                       style: pw.TextStyle(
                                                           color:
                                                               PdfColors.white)),
@@ -216,19 +218,57 @@ class _CriarContrato extends State<CriarContrato> {
                                             pw.CrossAxisAlignment.start,
                                         children: [
                                           _titleText('Cliente'),
-                                          pw.Text("teste"),
-                                          _titleText('Endereço'),
-                                          pw.Text("teste")
+                                          pw.Text(widget.contrato['nome_completo']),
+                                          _titleText('CPF'),
+                                          pw.Text(widget.contrato['cpf_cnpj']),
+                                          _titleText('Data de nascimento'),
+                                          pw.Text(widget.contrato['data_nascimento']),
+                                          _titleText('Email'),
+                                          pw.Text(widget.contrato['email']),
+                                          _titleText('Estado civil'),
+                                          pw.Text(widget.contrato['estado_civil']),
+                                          _titleText('Nacionalidade'),
+                                          pw.Text(widget.contrato['nacionalidade']),
+                                           _titleText('Naturalidade'),
+                                          pw.Text(widget.contrato['naturalidade']),
+                                           _titleText('RG'),
+                                          pw.Text(widget.contrato['rg']),
+                                          _titleText('Data do RG'),
+                                          pw.Text(widget.contrato['rg_data']),
+                                          _titleText('Estado do RG'),
+                                          pw.Text(widget.contrato['rg_estado']),
+                                          _titleText('orgão do rg'),
+                                          pw.Text(widget.contrato['rg_org']),
                                         ],
                                       ),
                                       pw.Column(
                                           crossAxisAlignment:
                                               pw.CrossAxisAlignment.end,
                                           children: [
-                                            _titleText('Número da fatura'),
-                                            pw.Text("teste"),
-                                            _titleText('Data'),
-                                            pw.Text("teste"),
+                                            _titleText('Veiculo'),
+                                            pw.Text(widget.contrato['fabricante'] + " " +widget.contrato['modelo']),
+                                            _titleText('Cambio'),
+                                            pw.Text(widget.contrato['cambio']),
+                                            _titleText('Combustivel'),
+                                            pw.Text(widget.contrato['combustivel']),
+                                            _titleText('Cor'),
+                                            pw.Text(widget.contrato['cor']),
+                                            _titleText('Fabricante'),
+                                            pw.Text(widget.contrato['fabricante']),
+                                            _titleText('Modelo'),
+                                            pw.Text(widget.contrato['modelo']),
+                                            _titleText('Placa'),
+                                            pw.Text(widget.contrato['placa']),
+                                            _titleText('Portas'),
+                                            pw.Text(widget.contrato['portas']),
+                                            _titleText('Tipo'),
+                                            pw.Text(widget.contrato['tipo']),
+                                            _titleText('Documentacao'),
+                                            pw.Text(documentacaoController.text),
+                                            _titleText('Observações'),
+                                            pw.Text(observacoesController.text),
+                                            _titleText('Termos'),
+                                            pw.Text(termosController.text),
                                           ])
                                     ]);
                               }
@@ -254,16 +294,11 @@ class _CriarContrato extends State<CriarContrato> {
                               await Printing.layoutPdf(
                                   onLayout: (PdfPageFormat formart) async =>
                                       doc.save());
-
-                              // Navigator.of(context).push(MaterialPageRoute(
-                              //     builder: (_) => ViewPdf(
-                              //           path,
-                              //         )));
-
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => PDFScreen(path)));
+                                      
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomePageRevendedor())));
                             },
                           ),
                         ),
