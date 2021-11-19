@@ -43,13 +43,13 @@ class _CriarContrato extends State<CriarContrato> {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Container(
+            const SizedBox(
               height: 150,
               child: HeaderWidget(150, false, Icons.directions_car),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              margin: const EdgeInsets.fromLTRB(25, 50, 25, 10),
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               alignment: Alignment.center,
               child: Column(
                 children: [
@@ -61,17 +61,17 @@ class _CriarContrato extends State<CriarContrato> {
                           child: Stack(
                             children: [
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
                                   border:
                                       Border.all(width: 5, color: Colors.white),
                                   color: Colors.white,
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Colors.black12,
                                       blurRadius: 20,
-                                      offset: const Offset(5, 5),
+                                      offset: Offset(5, 5),
                                     ),
                                   ],
                                 ),
@@ -82,7 +82,7 @@ class _CriarContrato extends State<CriarContrato> {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.fromLTRB(80, 80, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(80, 80, 0, 0),
                                 child: Icon(
                                   Icons.add_circle,
                                   color: Colors.grey.shade700,
@@ -92,7 +92,7 @@ class _CriarContrato extends State<CriarContrato> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Container(
@@ -109,7 +109,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Container(
@@ -127,7 +127,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Container(
@@ -144,7 +144,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Container(
@@ -161,7 +161,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: rgOrgController,
@@ -176,7 +176,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: rgUfController,
@@ -191,7 +191,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: rgDateController,
@@ -206,7 +206,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: emailController,
@@ -221,7 +221,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: nacionalidadeController,
@@ -236,7 +236,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: naturalidadeController,
@@ -251,7 +251,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: naturalidadeUfController,
@@ -267,7 +267,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: estadoCivilController,
@@ -282,7 +282,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           decoration:
                               ThemeHelper().buttonBoxDecoration(context),
@@ -294,7 +294,7 @@ class _CriarContrato extends State<CriarContrato> {
                               child: Text(
                                 "Enviar informações para contrato"
                                     .toUpperCase(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,

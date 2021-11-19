@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:master_revenda/Login/pages/button/button.dart';
 import 'package:master_revenda/Login/pages/button/buttontapped.dart';
@@ -11,6 +12,8 @@ import 'package:master_revenda/Revendas/veiculosRevenda.dart';
 import 'package:master_revenda/Veiculos/cadastrarVeiculo.dart';
 
 class HomePageRevendedor extends StatefulWidget {
+  const HomePageRevendedor({Key? key}) : super(key: key);
+
   @override
   _HomePageRevendedor createState() => _HomePageRevendedor();
 }
@@ -41,7 +44,9 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
     }
 
     void _letsPress2() {
-      print("click");
+      if (kDebugMode) {
+        print("click");
+      }
       setState(() {
         buttonPressed1 = false;
         buttonPressed2 = true;
@@ -78,7 +83,7 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
                   Container(
                     height: height * 0.3,
                     width: width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage("assets/carro_header.jpeg"),
                             fit: BoxFit.cover)),
@@ -97,7 +102,7 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
                     bottom: 90,
                     left: 20,
                     child: RichText(
-                      text: TextSpan(
+                      text: const TextSpan(
                           text: "Master",
                           style: TextStyle(
                               color: Colors.white,
@@ -119,8 +124,8 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
                 offset: Offset(0.0, -(height * 0.3 - height * 0.26)),
                 child: Container(
                   width: width,
-                  padding: EdgeInsets.only(top: 10),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.only(top: 10),
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
@@ -131,14 +136,14 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
                         children: <Widget>[
                           TabBar(
                             labelColor: Colors.black,
-                            labelStyle: TextStyle(
+                            labelStyle: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                             unselectedLabelColor: Colors.grey[400],
-                            unselectedLabelStyle: TextStyle(
+                            unselectedLabelStyle: const TextStyle(
                                 fontWeight: FontWeight.normal, fontSize: 17),
                             indicatorSize: TabBarIndicatorSize.label,
                             indicatorColor: Colors.transparent,
-                            tabs: <Widget>[
+                            tabs: const <Widget>[
                               Tab(
                                 child: Text("Veiculos"),
                               ),
@@ -153,7 +158,7 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Padding(
@@ -162,9 +167,9 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
                             child: TextField(
                               decoration: InputDecoration(
                                   contentPadding:
-                                      EdgeInsets.symmetric(vertical: 3),
-                                  prefixIcon: Padding(
-                                    padding: const EdgeInsets.only(
+                                      const EdgeInsets.symmetric(vertical: 3),
+                                  prefixIcon: const Padding(
+                                    padding: EdgeInsets.only(
                                         left: 15, right: 15),
                                     child: Icon(
                                       Icons.search,
@@ -179,7 +184,7 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
                                           color: (Colors.grey[400])!))),
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             height: height * 0.6,
                             child: TabBarView(
                               children: <Widget>[
@@ -194,7 +199,7 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               Padding(
-                                padding: EdgeInsets.all(20),
+                                padding: const EdgeInsets.all(20),
                                 child: Row(
                                   children: <Widget>[
                                     Expanded(
