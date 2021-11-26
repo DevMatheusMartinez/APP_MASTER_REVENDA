@@ -74,6 +74,7 @@ class _HomePageRevendedor extends State<HomePageRevendedor> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.deepPurple,
       body: SingleChildScrollView(
         child: Container(
           child: Column(

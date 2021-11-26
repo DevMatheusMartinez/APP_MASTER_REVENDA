@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+        backgroundColor: Colors.deepPurple,
         body: SingleChildScrollView(
       child: Column(
         children: <Widget>[
