@@ -41,11 +41,11 @@ class _CriarContrato extends State<CriarContrato> {
           children: [
             Container(
               height: 150,
-              child: HeaderWidget(150, false, Icons.directions_car),
+              child: const HeaderWidget(150, false, Icons.directions_car),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(25, 50, 25, 10),
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              margin: const EdgeInsets.fromLTRB(25, 50, 25, 10),
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               alignment: Alignment.center,
               child: Column(
                 children: [
@@ -57,17 +57,17 @@ class _CriarContrato extends State<CriarContrato> {
                           child: Stack(
                             children: [
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
                                   border:
                                       Border.all(width: 5, color: Colors.white),
                                   color: Colors.white,
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Colors.black12,
                                       blurRadius: 20,
-                                      offset: const Offset(5, 5),
+                                      offset: Offset(5, 5),
                                     ),
                                   ],
                                 ),
@@ -78,7 +78,7 @@ class _CriarContrato extends State<CriarContrato> {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.fromLTRB(80, 80, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(80, 80, 0, 0),
                                 child: Icon(
                                   Icons.add_circle,
                                   color: Colors.grey.shade700,
@@ -88,7 +88,7 @@ class _CriarContrato extends State<CriarContrato> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Container(
@@ -106,7 +106,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: observacoesController,
@@ -116,7 +116,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           child: TextFormField(
                             controller: termosController,
@@ -125,7 +125,7 @@ class _CriarContrato extends State<CriarContrato> {
                           ),
                           decoration: ThemeHelper().inputBoxDecorationShaddow(),
                         ),
-                        SizedBox(height: 20.0),
+                        const SizedBox(height: 20.0),
                         Container(
                           decoration:
                               ThemeHelper().buttonBoxDecoration(context),
@@ -136,7 +136,7 @@ class _CriarContrato extends State<CriarContrato> {
                                   const EdgeInsets.fromLTRB(40, 10, 40, 10),
                               child: Text(
                                 "Cadastrar".toUpperCase(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -146,7 +146,7 @@ class _CriarContrato extends State<CriarContrato> {
                             onPressed: () async {
                               _titleText(String text) {
                                 return pw.Padding(
-                                    padding: pw.EdgeInsets.only(top: 8),
+                                    padding: const pw.EdgeInsets.only(top: 8),
                                     child: pw.Text(text,
                                         style: pw.TextStyle(
                                             fontSize: 14,
@@ -158,7 +158,7 @@ class _CriarContrato extends State<CriarContrato> {
                                     color: PdfColors.blue,
                                     height: 150,
                                     child: pw.Padding(
-                                        padding: pw.EdgeInsets.all(16),
+                                        padding: const pw.EdgeInsets.all(16),
                                         child: pw.Row(
                                             crossAxisAlignment:
                                                 pw.CrossAxisAlignment.center,
@@ -174,11 +174,11 @@ class _CriarContrato extends State<CriarContrato> {
                                                   children: [
                                                     pw.Padding(
                                                         padding:
-                                                            pw.EdgeInsets.all(
+                                                            const pw.EdgeInsets.all(
                                                                 8),
                                                         child: pw.PdfLogo()),
                                                     pw.Text('Contrato de venda',
-                                                        style: pw.TextStyle(
+                                                        style: const pw.TextStyle(
                                                             fontSize: 22,
                                                             color: PdfColors
                                                                 .white))
@@ -190,17 +190,17 @@ class _CriarContrato extends State<CriarContrato> {
                                                     pw.CrossAxisAlignment.end,
                                                 children: [
                                                   pw.Text(widget.contrato['nome_completo']  ,
-                                                      style: pw.TextStyle(
+                                                      style: const pw.TextStyle(
                                                           fontSize: 22,
                                                           color:
                                                               PdfColors.white)),
                                                   pw.Text(
                                                       widget.contrato['cpf_cnpj'],
-                                                      style: pw.TextStyle(
+                                                      style: const pw.TextStyle(
                                                           color:
                                                               PdfColors.white)),
                                                   pw.Text(widget.contrato['rg'],
-                                                      style: pw.TextStyle(
+                                                      style: const pw.TextStyle(
                                                           color:
                                                               PdfColors.white)),
                                                 ],
@@ -277,7 +277,7 @@ class _CriarContrato extends State<CriarContrato> {
                                   pw.Context context) {
                                 return [
                                   pw.Padding(
-                                      padding: pw.EdgeInsets.only(
+                                      padding: const pw.EdgeInsets.only(
                                           top: 30, left: 25, right: 25),
                                       child: _buildContentClient())
                                 ];
@@ -286,7 +286,7 @@ class _CriarContrato extends State<CriarContrato> {
                               final pw.Document doc = pw.Document();
                               doc.addPage(pw.MultiPage(
                                 pageTheme:
-                                    pw.PageTheme(margin: pw.EdgeInsets.zero),
+                                    const pw.PageTheme(margin: pw.EdgeInsets.zero),
                                 header: _buildHeader,
                                 build: (context) => _buildContent(context),
                               ));
@@ -298,7 +298,7 @@ class _CriarContrato extends State<CriarContrato> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomePageRevendedor())));
+                                      builder: (context) => const HomePageRevendedor()));
                             },
                           ),
                         ),
